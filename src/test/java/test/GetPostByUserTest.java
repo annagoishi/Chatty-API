@@ -18,11 +18,13 @@ public class GetPostByUserTest extends BaseTest{
         String description = faker.lorem().sentence();
         String body = faker.lorem().paragraph();
         String imageUrl = faker.internet().image();
+
         Response registerUser = registerUser(201);
         String accessToken = registerUser.jsonPath().getString("accessToken");
         Response userInfo = getRequestWithAccessToken(ME_PATH, 200, accessToken);
         UserResponse userResponse = userInfo.as(UserResponse.class);
         String userId = userResponse.getId();
+
         PostCreateRequest postCreateRequest = PostCreateRequest.builder()
                 .title(title)
                 .description(description)

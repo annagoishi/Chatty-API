@@ -37,7 +37,7 @@ public class UpdateUserTest extends BaseTest {
         assertEquals(phone, updatedUserResponse.getPhone());
     }
     @Test
-    public void failUpdateUserInfoTest() {
+    public void updateUserInfoWithEmptyDataTest() {
         Response registerUser = registerUser(201);
         String accessToken = registerUser.jsonPath().getString("accessToken");
         String name = "";

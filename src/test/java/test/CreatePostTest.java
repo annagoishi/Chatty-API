@@ -40,7 +40,7 @@ public class CreatePostTest extends BaseTest {
     }
 
     @Test
-    public void createPostBadRequestTest() {
+    public void createPostInvalidDateTest() {
         Faker faker = new Faker();
         String title = faker.lorem().sentence();
         String description = faker.lorem().paragraph();

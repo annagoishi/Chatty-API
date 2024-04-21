@@ -12,6 +12,11 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.io.File;
+import java.io.IOException;
+
+
+
+import java.io.File;
 
 import static dk.brics.automaton.StringUnionOperations.build;
 import static io.restassured.RestAssured.given;
@@ -39,6 +44,10 @@ public class BaseTest {
     static RequestSpecification specification = new RequestSpecBuilder()
             .setBaseUri(BASE_URI)
             .setContentType(ContentType.JSON).build();
+    static RequestSpecification specificationImage = new RequestSpecBuilder()
+            .setBaseUri(BASE_URI)
+            .setContentType("multipart/form-data")
+            .build();
 
     public static Response postRequest(String endPoint, Integer expectedStatusCode, Object body) {
         Response response = given()
@@ -65,9 +74,9 @@ public class BaseTest {
     }
     public static Response postRequestWithImage(String endPoint, Integer expectedStatusCode, File imageFile, String accessToken) {
         Response response = given()
-                .spec(specification)
+                .spec(specificationImage)
                 .header("Authorization", "Bearer " + accessToken)
-                .multiPart(imageFile)
+                .multiPart("multipartFile", imageFile, "image/jpeg")
                 .when().log().all()
                 .post(endPoint)
                 .then().log().all()
