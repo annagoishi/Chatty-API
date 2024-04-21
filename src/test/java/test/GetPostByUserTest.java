@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GetPostByUserTest extends BaseTest{
-    @Test
+    @Test @org.testng.annotations.Test
     public void successGetUserPostsTest() {
         Faker faker = new Faker();
         String title = faker.lorem().words(1).get(0);
@@ -48,7 +48,7 @@ public class GetPostByUserTest extends BaseTest{
             assertEquals(userId, post.getUser().getId(), "Each post should belong to the specified user");
         }
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void unauthorizedGetUserPostsTest() {
         Faker faker = new Faker();
         String title = faker.lorem().words(1).get(0);

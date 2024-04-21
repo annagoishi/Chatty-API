@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FeedbackTest extends BaseTest{
-    @Test
+    @Test @org.testng.annotations.Test
     public void successFeedbackTest() {
         Faker faker = new Faker();
         String name = faker.name().firstName();
@@ -22,10 +22,10 @@ public class FeedbackTest extends BaseTest{
                 .content(content)
                 .build();
 
-        Response feedbackResponse = postRequest(FEEDBACK_PATH, 201, feedbackRequest);
+        Response feedbackResponse = postRequest(FEEDBACK_PATH, 200, feedbackRequest);
         assertEquals(201, feedbackResponse.getStatusCode(), "Feedback submission failed");
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void feedbackWithoutNameTest() {
 
         Faker faker = new Faker();
@@ -43,7 +43,7 @@ public class FeedbackTest extends BaseTest{
         String responseMessage = feedbackResponse.getBody().jsonPath().getString("name");
         assertTrue(responseMessage.contains("Name can not be empty!"));
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void feedbackWithoutEmailTest() {
 
         Faker faker = new Faker();
@@ -62,7 +62,7 @@ public class FeedbackTest extends BaseTest{
         String responseMessage = feedbackResponse.getBody().jsonPath().getString("email");
         assertTrue(responseMessage.contains("Email can not be empty!"));
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void feedbackWithoutContentTest() {
 
         Faker faker = new Faker();

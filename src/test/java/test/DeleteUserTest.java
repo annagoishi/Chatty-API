@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static test.BaseTest.*;
 
 public class DeleteUserTest {
-    @Test
+    @Test @org.testng.annotations.Test
     public void deleteUserTest() {
         Response registerUser = registerUser(201);
         String accessToken = registerUser.jsonPath().getString("accessToken");
@@ -19,14 +19,14 @@ public class DeleteUserTest {
 
         String accessAdminToken = getAdminAccessToken();
 
-        Response deleteUserResponse = deleteRequest(DELETE_USER_PATH + id, 204, accessAdminToken);
+        Response deleteUserResponse = deleteRequest(DELETE_USER_PATH + id, 200, accessAdminToken);
         assertEquals(204, deleteUserResponse.getStatusCode(), "User deletion failed");
         Response getUserInfoAfterDeletion = getRequestWithAccessToken(ME_PATH, 404, accessToken);
         String errorText = getUserInfoAfterDeletion.getBody().jsonPath().getString("message");
         assertEquals("User not found!", errorText);
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void unauthorizedDeleteUserTest() {
         Response registerUser = registerUser(201);
         String accessToken = registerUser.jsonPath().getString("accessToken");

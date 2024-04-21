@@ -8,7 +8,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetAllPostsTest extends BaseTest{
-    @Test
+    @Test @org.testng.annotations.Test
     public void successGetAllPostsTest() {
         String accessAdminToken = getAdminAccessToken();
         Response response = getRequestWithAccessToken(GET_ALL_POSTS_PATH, 200, accessAdminToken);
@@ -28,7 +28,7 @@ public class GetAllPostsTest extends BaseTest{
         }
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void unauthorizedGetAllPostsTest() {
         String accessAdminToken = "invalidToken";
         Response response = getRequestWithAccessToken(GET_ALL_POSTS_PATH, 401, accessAdminToken);

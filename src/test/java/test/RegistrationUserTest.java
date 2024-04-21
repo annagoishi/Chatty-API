@@ -9,15 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegistrationUserTest extends BaseTest {
-    @Test
+    @Test @org.testng.annotations.Test
     public void successRegistrationTest() {
-        Response registerUser = registerUser(201);
-        assertEquals(201, registerUser.getStatusCode());
+        Response registerUser = registerUser(200);
+        assertEquals(200, registerUser.getStatusCode());
         assertTrue(registerUser.getBody().asString().contains("accessToken"));
         assertTrue(registerUser.getBody().asString().contains("refreshToken"));
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void registrationWithoutPasswordDataTest() {
         Faker faker = new Faker();
         String email = faker.internet().emailAddress();

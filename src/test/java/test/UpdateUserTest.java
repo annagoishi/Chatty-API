@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UpdateUserTest extends BaseTest {
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void successUpdateUserInfoTest() {
         Faker faker = new Faker();
         Response registerUser = registerUser(201);
@@ -36,7 +36,7 @@ public class UpdateUserTest extends BaseTest {
         assertEquals(surname, updatedUserResponse.getSurname());
         assertEquals(phone, updatedUserResponse.getPhone());
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void updateUserInfoWithEmptyDataTest() {
         Response registerUser = registerUser(201);
         String accessToken = registerUser.jsonPath().getString("accessToken");
@@ -62,7 +62,7 @@ public class UpdateUserTest extends BaseTest {
         assertNotEquals(surname, updatedUserResponse.getSurname());
         assertNotEquals(phone, updatedUserResponse.getPhone());
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void unauthorizedUpdateUserInfoTest() {
         Faker faker = new Faker();
         Response registerUser = registerUser(201);

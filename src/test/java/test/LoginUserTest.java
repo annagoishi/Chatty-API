@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginUserTest extends BaseTest{
-    @Test
+    @Test @org.testng.annotations.Test
     public void successAuthenticationTest() {
         LoginRequest loginRequest = LoginRequest.builder()
                 .email("qwerty@gm.com")
@@ -21,7 +21,7 @@ public class LoginUserTest extends BaseTest{
         assertTrue(authResponse.getBody().asString().contains("refreshToken"));
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void invalidPasswordAuthTest() {
         LoginRequest loginRequest = LoginRequest.builder()
                 .email("qwerty@gm.com")
@@ -32,7 +32,7 @@ public class LoginUserTest extends BaseTest{
         assertTrue(authWithWrongPasswordResponse.getBody().asString().contains("The password does not match"));
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void loginWithoutPassword() {
         LoginRequest loginRequest = LoginRequest.builder()
                 .email("qwerty@gm.com")

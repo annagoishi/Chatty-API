@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UpdatePostTest extends BaseTest{
-    @Test
+    @Test @org.testng.annotations.Test
     public void successUpdatePostTest() {
         Response createPostResponse = createPost(201);
         String postId = createPostResponse.jsonPath().getString("id");
@@ -30,7 +30,7 @@ public class UpdatePostTest extends BaseTest{
         assertEquals("Updated Description", updatedPost.getDescription(), "Post description should be updated");
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void unauthorizedUpdatePostTest() {
         Response createPostResponse = createPost(201);
         String postId = createPostResponse.jsonPath().getString("id");

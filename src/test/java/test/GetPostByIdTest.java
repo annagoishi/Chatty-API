@@ -7,7 +7,7 @@ import dto.PostGetResponse;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetPostByIdTest extends BaseTest{
-    @Test
+    @Test @org.testng.annotations.Test
     public void successGetPostById() {
         Response createPostResponse = createPost(201);
         String postId = createPostResponse.jsonPath().getString("id");
@@ -19,7 +19,7 @@ public class GetPostByIdTest extends BaseTest{
         assertNotNull(post.getId(), "Post ID should not be null");
         assertNotNull(post.getTitle(), "Post title should not be null");
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void unauthorizedGetPostById() {
         Response createPostResponse = createPost(201);
         String postId = createPostResponse.jsonPath().getString("id");

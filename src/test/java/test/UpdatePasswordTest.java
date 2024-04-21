@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UpdatePasswordTest extends BaseTest {
-    @Test
+    @Test @org.testng.annotations.Test
     public void successUpdatePasswordTest() {
         Faker faker = new Faker();
         String email = faker.internet().emailAddress();
@@ -38,7 +38,7 @@ public class UpdatePasswordTest extends BaseTest {
         Response authResponse = postRequest(AUTH_PATH, 200, new LoginRequest(email, "User12345"));
         assertEquals(200, authResponse.getStatusCode(), "Failed to login with updated password");
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void updateWithInvalidPasswordTest() {
         Faker faker = new Faker();
         String email = faker.internet().emailAddress();
@@ -62,7 +62,7 @@ public class UpdatePasswordTest extends BaseTest {
         String errorText = updateResponse.getBody().jsonPath().getString("newPassword");
         assertTrue(errorText.contains("Password must contain letters and numbers") || errorText.contains("Password must contain at least 8 characters"));
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void unauthorizedUpdatePasswordTest() {
         registerUser(201);
         PasswordUpdateRequest updateRequest = PasswordUpdateRequest.builder()

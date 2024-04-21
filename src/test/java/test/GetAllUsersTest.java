@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetAllUsersTest extends BaseTest {
-    @Test
+    @Test @org.testng.annotations.Test
     public void getAllUsersSuccessTest() {
         String accessAdminToken = getAdminAccessToken();
 
@@ -24,7 +24,7 @@ public class GetAllUsersTest extends BaseTest {
         assertNotNull(firstUser.getEmail(), "First user's email should not be null");
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void getAllUsersUnauthorizedTest() {
         Response getUsersResponse = getRequestWithAccessToken(GET_USERS_PATH, 401, "");
 

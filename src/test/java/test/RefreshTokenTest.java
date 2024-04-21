@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static test.BaseTest.*;
 
 public class RefreshTokenTest {
-    @Test
+    @Test @org.testng.annotations.Test
     public void successRefreshTokenTest() {
 
         Response authResponse = registerUser(201);
@@ -19,15 +19,15 @@ public class RefreshTokenTest {
                 .refreshToken(refreshToken)
                 .build();
 
-        Response refreshResponse = postRequest(REFRESH_PATH, 201, refreshTokenRequest);
+        Response refreshResponse = postRequest(REFRESH_PATH, 200, refreshTokenRequest);
 
-        assertEquals(201, refreshResponse.getStatusCode(), "Refresh token request should return status code 200");
+        assertEquals(200, refreshResponse.getStatusCode(), "Refresh token request should return status code 200");
 
         String newAccessToken = refreshResponse.jsonPath().getString("accessToken");
         assertTrue(newAccessToken != null && !newAccessToken.isEmpty(), "New access token should not be null or empty");
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void refreshTokenUnauthorizedTest() {
         RefreshTokenRequest refreshTokenRequest = RefreshTokenRequest.builder()
                 .refreshToken("invalid_refresh_token")

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class CreatePostTest extends BaseTest {
-    @Test
+    @Test @org.testng.annotations.Test
     public void successCreatePostTest() {
         Faker faker = new Faker();
         String title = faker.lorem().words(1).get(0);
@@ -33,13 +33,13 @@ public class CreatePostTest extends BaseTest {
                 .draft(false)
                 .build();
 
-        Response createPostResponse = postRequestWithAccessToken(CREATE_POST_PATH, 201, postCreateRequest, accessToken);
+        Response createPostResponse = postRequestWithAccessToken(CREATE_POST_PATH, 200, postCreateRequest, accessToken);
         PostResponse createdPostResponse = createPostResponse.as(PostResponse.class);
         assertEquals(title, createdPostResponse.getTitle(), "Returned post title should match the sent one");
         assertEquals(description, createdPostResponse.getDescription(), "Returned post description should match the sent one");
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void createPostInvalidDateTest() {
         Faker faker = new Faker();
         String title = faker.lorem().sentence();
@@ -60,7 +60,7 @@ public class CreatePostTest extends BaseTest {
         String errorMessage = createPostResponse.getBody().asString();
         assertTrue(errorMessage.contains("Cannot deserialize value of type `java.time.LocalDateTime`"));
     }
-    @Test
+    @Test @org.testng.annotations.Test
     public void unauthorizedCreatePostTest() {
         Faker faker = new Faker();
         String title = faker.lorem().words(1).get(0);

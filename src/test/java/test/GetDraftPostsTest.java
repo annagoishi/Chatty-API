@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetDraftPostsTest extends BaseTest {
-    @Test
+    @Test @org.testng.annotations.Test
     public void successGetDraftPostsTest() {
         String accessAdminToken = getAdminAccessToken();
         Response response = getRequestWithAccessToken(GET_DRAFT_POSTS_PATH, 200, accessAdminToken);
@@ -26,7 +26,7 @@ public class GetDraftPostsTest extends BaseTest {
         }
     }
 
-    @Test
+    @Test @org.testng.annotations.Test
     public void unauthorizedGetDraftPostsTest() {
         String accessAdminToken = "invalidToken";
         Response response = getRequestWithAccessToken(GET_DRAFT_POSTS_PATH, 401, accessAdminToken);
